@@ -5,8 +5,11 @@ import org.apache.spark.sql.DataFrame
 
 import java.nio.file.Files
 import java.nio.file.Paths
+import org.apache.log4j.Logger
 
 class DataReader(path:String) extends SparkSessionProvider {
+
+  @transient lazy val logger = Logger.getLogger(getClass.getName)
 
   def ifExists() : Boolean = {
     return Files.exists(Paths.get(this.path))
@@ -19,13 +22,14 @@ class DataReader(path:String) extends SparkSessionProvider {
   }
 
   def read(): DataFrame ={
+      logger.info("reading file")
       if (ifExists()){
           spark.read.format(getExtension).
             option("inferSchema",true).
             option("header",true).
             load(this.path)
       } else {
-        println("File not found: " + this.path)
+        logger.warn("File not found: " + this.path)
         System.exit(0)
         spark.emptyDataFrame
       }
