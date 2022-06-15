@@ -1,6 +1,6 @@
 package agh.wggios.analizadanych.datawriter
 
-import agh.SparkSessionProvider
+import agh.wggios.analizadanych.SparkSessionProvider
 import org.apache.spark.sql.DataFrame
 
 class DataWriter(path:String, df:DataFrame) extends SparkSessionProvider {

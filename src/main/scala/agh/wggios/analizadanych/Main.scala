@@ -1,6 +1,6 @@
 package agh.wggios.analizadanych
 
-import agh.SparkSessionProvider
+import agh.wggios.analizadanych.SparkSessionProvider
 import agh.wggios.analizadanych.caseclass.FlightCaseClass
 import agh.wggios.analizadanych.datareader.DataReader
 import agh.wggios.analizadanych.datawriter.DataWriter
@@ -12,7 +12,7 @@ object Main extends SparkSessionProvider {
   def main(args: Array[String]): Unit = {
 
     import spark.implicits._
-    val flightsDf = new DataReader(args(0)).read().as[FlightCaseClass]
+    val flightsDf = new DataReader("2010-summary.csv").read().as[FlightCaseClass]
 
     val newDf= flightsDf.filter(flight_row => new transformations().originIsDestination(flight_row)).show()
 

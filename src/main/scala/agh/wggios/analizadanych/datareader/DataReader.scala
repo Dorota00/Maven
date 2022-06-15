@@ -1,6 +1,6 @@
 package agh.wggios.analizadanych.datareader
 
-import agh.SparkSessionProvider
+import agh.wggios.analizadanych.SparkSessionProvider
 import org.apache.spark.sql.DataFrame
 
 import java.nio.file.Files

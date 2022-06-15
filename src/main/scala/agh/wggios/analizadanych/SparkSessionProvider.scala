@@ -1,4 +1,4 @@
-package agh
+package agh.wggios.analizadanych
 
 import org.apache.spark.sql.SparkSession
 
